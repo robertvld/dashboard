@@ -1,0 +1,739 @@
+<html>
+    <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+    <script src="D:\Downloads\kinetic-v5.1.0\kinetic-v5.1.0.js">// let op lib op eigen pc</script>
+
+    <head>
+        <title>WebSocket Echo Test</title>
+        <script>
+            function init() {
+            websocket = new WebSocket("ws://echo.websocket.org/");
+
+            websocket.onopen = function() { document.getElementById("output").innerHTML += "<p>> CONNECTED</p>"; };
+
+            websocket.onmessage = function(evt) { document.getElementById("output").innerHTML += "";
+
+
+			var minheat = evt.data * 2;
+			var maxheat = evt.data * 4;
+
+			var data1 = evt.data * 10;
+			var data2 = evt.data * 6;
+			var data3 = evt.data * 7;
+			var data4 = evt.data * 3;
+			var data5 = evt.data * 8;
+
+            nametext.setText(minheat);
+            nametext2.setText(evt.data);
+            nametext3.setText(maxheat);
+            nametext4.setText(evt.data * 3142);
+            rect1.setHeight(data1 * -1);
+            rect2.setHeight(data2 * -1);
+            rect3.setHeight(data3 * -1);
+            rect4.setHeight(data4 * -1);
+            rect5.setHeight(data5 * -1);
+            arc.setAngle(maxheat);
+            poort17vbig.setAngle(data2);
+            poort18vbig.setAngle(data3);
+            poort19vbig.setAngle(data4);
+
+
+            if (evt.data < 20) {
+			    rect1.setFill('#face00');
+			} else {
+			    rect1.setFill('blue');
+			}
+			            if (evt.data < 50) {
+						    rect2.setFill('#face00');
+						} else {
+						    rect2.setFill('blue');
+			}
+			            if (evt.data < 50) {
+						    rect3.setFill('#face00');
+						} else {
+						    rect3.setFill('blue');
+			}
+			            if (evt.data < 50) {
+						    rect4.setFill('#face00');
+						} else {
+						    rect4.setFill('blue');
+			}
+			            if (evt.data < 50) {
+						    rect5.setFill('#face00');
+						} else {
+						    rect5.setFill('blue');
+			}
+
+            layer.draw();
+
+
+
+            };
+
+            websocket.onerror = function(evt) { document.getElementById("output").innerHTML += "<p style='color: red;'>> ERROR: " + evt.data + "</p>"; };
+            }
+
+            function sendMessage(message) {
+            document.getElementById("output").innerHTML += "";
+
+            websocket.send(message);
+            }
+
+            window.addEventListener("load", init, false);
+        </script>
+    </head>
+    <body bgcolor="#000b1a">
+        <input onkeypress="if(this.value) {if (window.event.keyCode == 13) { sendMessage(this.value); this.value = null; }}"/>
+
+
+
+      <div id="container"></div>
+
+      <script>
+var stage = new Kinetic.Stage({
+        container: 'container',
+        width: 1350,
+        height: 1200
+      	});
+
+	var layer = new Kinetic.Layer();
+	var messageLayer = new Kinetic.Layer();
+
+	var nametext = new Kinetic.Text({
+		x: 71,
+		y: 60,
+		text: '',
+		fontSize: 20,
+		fontFamily: 'Century Gothic',
+		fill: '#1879fc',
+		padding: 20,
+        });
+        	var nametext2 = new Kinetic.Text({
+				x: 171,
+				y: 60,
+				text: '',
+				fontSize: 20,
+				fontFamily: 'Century Gothic',
+				fill: '#1879fc',
+				padding: 20,
+        });
+        	var nametext3 = new Kinetic.Text({
+				x: 271,
+				y: 60,
+				text: '',
+				fontSize: 20,
+				fontFamily: 'Century Gothic',
+				fill: '#1879fc',
+				padding: 20,
+        });
+            var nametext4 = new Kinetic.Text({
+						x: 850,
+						y: 660,
+						text: '',
+						fontSize: 25,
+						fontFamily: 'Tahoma',
+						fill: '#00d8ff',
+						padding: 20,
+        });
+
+                	var hostname = new Kinetic.Text({
+						x: 800,
+						y: 450,
+						text: 'CR0.HOSTNAME.NET',
+						fontSize: 11,
+						fontFamily: 'Tahoma',
+						fill: '#00d8ff',
+						padding: 20,
+        });
+              var rect1 = new Kinetic.Rect({
+		        x: 239,
+		        y: 375,
+		        width: 30,
+		        height: 20,
+		        fill: '',
+		        stroke: 'black',
+		        strokeWidth: 1
+      });
+                    var rect2 = new Kinetic.Rect({
+	  		        x: 269,
+	  		        y: 375,
+	  		        width: 30,
+	  		        height: 20,
+	  		        fill: '',
+	  		        stroke: 'black',
+	  		        strokeWidth: 1
+      });
+                    var rect3 = new Kinetic.Rect({
+	  		        x: 299,
+	  		        y: 375,
+	  		        width: 30,
+	  		        height: 20,
+	  		        fill: '',
+	  		        stroke: 'black',
+	  		        strokeWidth: 1
+      });
+                    var rect4 = new Kinetic.Rect({
+	  		        x: 329,
+	  		        y: 375,
+	  		        width: 30,
+	  		        height: 20,
+	  		        fill: '',
+	  		        stroke: 'black',
+	  		        strokeWidth: 1
+      });
+                    var rect5 = new Kinetic.Rect({
+	  		        x: 359,
+	  		        y: 375,
+	  		        width: 30,
+	  		        height: 20,
+	  		        fill: '',
+	  		        stroke: 'black',
+	  		        strokeWidth: 1
+      });
+
+                          var rect6 = new Kinetic.Rect({
+	  	  		        x: 559,
+	  	  		        y: 275,
+	  	  		        width: 30,
+	  	  		        height: 20,
+	  	  		        fill: 'green',
+	  	  		        stroke: 'black',
+	  	  		        strokeWidth: 1
+      });
+
+      rect5.on('click', function(evt) {
+		rect6.remove();   // delete layer eerst
+		rect5.setFill('green');
+		layer.add(rect6);
+	          stage.draw();
+      });
+
+      rect6.on('click', function(evt) {
+	  			rect6.remove();
+	  	        stage.draw();
+      });
+
+
+
+
+      var arc = new Kinetic.Arc({
+	        innerRadius: 80,
+	        outerRadius: 80,
+	        stroke: 'red',
+	        strokeWidth: 20,
+	        angle: 180,
+	        rotationDeg: 180,
+	        x:500,
+	        y:500,
+    });
+
+    						    							    	var poort19vbig = new Kinetic.Arc({
+															      	innerRadius: 30,
+															      	outerRadius: 33,
+															      	stroke: '#00d8ff',
+															      	strokeWidth: 10,
+															      	angle: 360,
+															      	rotationDeg: 360,
+															      	x: 1256,
+															      	y: 600,
+						    	});
+
+						    	    						    							    	var poort18vbig = new Kinetic.Arc({
+																							      	innerRadius: 30,
+																							      	outerRadius: 33,
+																							      	stroke: '#00d8ff',
+																							      	strokeWidth: 10,
+																							      	angle: 360,
+																							      	rotationDeg: 360,
+																							      	x: 1256,
+																							      	y: 700,
+						    	});
+
+						    	var poort17vbig = new Kinetic.Arc({
+								innerRadius: 30,
+								outerRadius: 33,
+								stroke: '#00d8ff',
+								strokeWidth: 10,
+								angle: 360,
+								rotationDeg: 360,
+								x: 1256,
+								y: 500,
+						    	});
+
+						    	            var aslayer = new Kinetic.Text({
+														x: 1220,
+														y: 760,
+														text: 'VIEW AS LAYER',
+														fontSize: 11,
+														fontFamily: 'Tahoma',
+														fill: '#00d8ff',
+        });
+
+        						    	            var aslayerdelete = new Kinetic.Text({
+																x: 1220,
+																y: 790,
+																text: 'HIDE AS LAYER',
+																fontSize: 11,
+																fontFamily: 'Tahoma',
+																fill: '#00d8ff',
+        });
+
+        						    	            var closeline = new Kinetic.Text({
+																x: 1220,
+																y: 1060,
+																text: 'CLOSE',
+																fontSize: 11,
+																fontFamily: 'Tahoma',
+																fill: '#00d8ff',
+        });
+
+
+          var core = new Kinetic.Arc({
+		        innerRadius: 160,
+		        outerRadius: 160,
+		        stroke: '#00d8ff',
+		        strokeWidth: 75,
+		        angle: 360,
+		        rotationDeg: 0,
+		        x: 900,
+		        y: 700,
+    });
+
+        			var chas1 = new Kinetic.Arc({
+					innerRadius: 199,
+					outerRadius: 122,
+					stroke: '#000b1a',
+					strokeWidth: 1,
+					angle: 40,
+					fill: '#00d8ff',
+					rotationDeg: 40,
+					x:900,
+					y:700,
+				});
+    			var chas2 = new Kinetic.Arc({
+				innerRadius: 199,
+				outerRadius: 122,
+				stroke: '#000b1a',
+				strokeWidth: 1,
+				angle: 60,
+				fill: '#00d8ff',
+				rotationDeg: 40,
+				x:900,
+				y:700,
+				});
+    			var chas3 = new Kinetic.Arc({
+				innerRadius: 199,
+				outerRadius: 122,
+				stroke: '#000b1a',
+				strokeWidth: 1,
+				angle: 120,
+				fill: '#00d8ff',
+				rotationDeg: 100,
+				x:900,
+				y:700,
+				});
+    			var chas4 = new Kinetic.Arc({
+				innerRadius: 199,
+				outerRadius: 122,
+				stroke: '#000b1a',
+				strokeWidth: 1,
+				angle: 20,
+				fill: '#00d8ff',
+				rotationDeg: 340,
+				x:900,
+				y:700,
+				});
+    			var chas5 = new Kinetic.Arc({
+				innerRadius: 199,
+				outerRadius: 122,
+				stroke: '#000b1a',
+				strokeWidth: 1,
+				angle: 20,
+				fill: '#00d8ff',
+				rotationDeg: 360,
+				x:900,
+				y:700,
+				});
+
+    			var corep1 = new Kinetic.Arc({
+				innerRadius: 197,
+				outerRadius: 185,
+				stroke: '#000b1a',
+				strokeWidth: 2,
+				angle: 4,
+				fill: '#00d8ff',
+				rotationDeg: 270,
+				x:900,
+				y:700,
+				});
+    			var corep2 = new Kinetic.Arc({
+				innerRadius: 197,
+				outerRadius: 185,
+				stroke: '#000b1a',
+				strokeWidth: 2,
+				angle: 4,
+				fill: '#00d8ff',
+				rotationDeg: 266,
+				x:900,
+				y:700,
+				});
+    			var corep3 = new Kinetic.Arc({
+				innerRadius: 197,
+				outerRadius: 185,
+				stroke: '#000b1a',
+				strokeWidth: 2,
+				angle: 4,
+				fill: '#00d8ff',
+				rotationDeg: 262,
+				x:900,
+				y:700,
+				});
+    			var corep4 = new Kinetic.Arc({
+				innerRadius: 197,
+				outerRadius: 185,
+				stroke: '#000b1a',
+				strokeWidth: 2,
+				angle: 4,
+				fill: '#00d8ff',
+				rotationDeg: 258,
+				x:900,
+				y:700,
+				});
+    			var corep5 = new Kinetic.Arc({
+				innerRadius: 197,
+				outerRadius: 185,
+				stroke: '#000b1a',
+				strokeWidth: 2,
+				angle: 4,
+				fill: '#00d8ff',
+				rotationDeg: 254,
+				x:900,
+				y:700,
+				});
+    			var corep6 = new Kinetic.Arc({
+				innerRadius: 197,
+				outerRadius: 185,
+				stroke: '#000b1a',
+				strokeWidth: 2,
+				angle: 4,
+				fill: '#00d8ff',
+				rotationDeg: 250,
+				x:900,
+				y:700,
+				});
+    			var corep7 = new Kinetic.Arc({
+				innerRadius: 197,
+				outerRadius: 185,
+				stroke: '#000b1a',
+				strokeWidth: 2,
+				angle: 4,
+				fill: '#00d8ff',
+				rotationDeg: 246,
+				x:900,
+				y:700,
+				});
+    			var corep8 = new Kinetic.Arc({
+				innerRadius: 197,
+				outerRadius: 185,
+				stroke: '#000b1a',
+				strokeWidth: 2,
+				angle: 4,
+				fill: '#00d8ff',
+				rotationDeg: 242,
+				x:900,
+				y:700,
+				});
+				    			var corep9 = new Kinetic.Arc({
+								innerRadius: 197,
+								outerRadius: 185,
+								stroke: '#000b1a',
+								strokeWidth: 2,
+								angle: 4,
+								fill: '#00d8ff',
+								rotationDeg: 238,
+								x:900,
+								y:700,
+								});
+				    			var corep10 = new Kinetic.Arc({
+								innerRadius: 197,
+								outerRadius: 185,
+								stroke: '#000b1a',
+								strokeWidth: 2,
+								angle: 4,
+								fill: '#00d8ff',
+								rotationDeg: 234,
+								x:900,
+								y:700,
+								});
+				    			var corep11 = new Kinetic.Arc({
+								innerRadius: 197,
+								outerRadius: 185,
+								stroke: '#000b1a',
+								strokeWidth: 2,
+								angle: 4,
+								fill: '#00d8ff',
+								rotationDeg: 230,
+								x:900,
+								y:700,
+								});
+				    			var corep12 = new Kinetic.Arc({
+								innerRadius: 197,
+								outerRadius: 185,
+								stroke: '#000b1a',
+								strokeWidth: 2,
+								angle: 4,
+								fill: '#00d8ff',
+								rotationDeg: 226,
+								x:900,
+								y:700,
+								});
+				    			var corep13 = new Kinetic.Arc({
+								innerRadius: 197,
+								outerRadius: 185,
+								stroke: '#000b1a',
+								strokeWidth: 2,
+								angle: 4,
+								fill: '#00d8ff',
+								rotationDeg: 222,
+								x:900,
+								y:700,
+								});
+				    			var corep14 = new Kinetic.Arc({
+								innerRadius: 197,
+								outerRadius: 185,
+								stroke: '#000b1a',
+								strokeWidth: 2,
+								angle: 4,
+								fill: '#00d8ff',
+								rotationDeg: 218,
+								x:900,
+								y:700,
+								});
+				    			var corep15 = new Kinetic.Arc({
+								innerRadius: 197,
+								outerRadius: 185,
+								stroke: '#000b1a',
+								strokeWidth: 2,
+								angle: 4,
+								fill: '#00d8ff',
+								rotationDeg: 214,
+								x:900,
+								y:700,
+								});
+				    			var corep16 = new Kinetic.Arc({
+								innerRadius: 197,
+								outerRadius: 185,
+								stroke: '#000b1a',
+								strokeWidth: 2,
+								angle: 4,
+								fill: '#00d8ff',
+								rotationDeg: 210,
+								x:900,
+								y:700,
+				});
+
+
+      var redLine = new Kinetic.Line({
+        points: [1000, 600, 1150, 600, 1150, 1100],
+        stroke: '#00d8ff',
+        strokeWidth: 2,
+        lineCap: 'round',
+        lineJoin: 'round'
+      });
+
+            var closearc = new Kinetic.Arc({
+	  	        innerRadius: 0,
+	  	        outerRadius: 6,
+	  	        stroke: '#00d8ff',
+	  	        fill: '#00d8ff',
+	  	        strokeWidth: 1,
+	  	        angle: 360,
+	  	        rotationDeg: 1,
+	  	        x:1150,
+	  	        y:1066,
+    });
+
+                var aslayerarc = new Kinetic.Arc({
+		  	        innerRadius: 0,
+		  	        outerRadius: 6,
+		  	        stroke: '#00d8ff',
+		  	        fill: '#00d8ff',
+		  	        strokeWidth: 1,
+		  	        angle: 360,
+		  	        rotationDeg: 1,
+		  	        x:1150,
+		  	        y:766,
+    });
+
+                var aslayerdeletearc = new Kinetic.Arc({
+		  	        innerRadius: 0,
+		  	        outerRadius: 6,
+		  	        stroke: '#00d8ff',
+		  	        fill: '#00d8ff',
+		  	        strokeWidth: 1,
+		  	        angle: 360,
+		  	        rotationDeg: 1,
+		  	        x:1150,
+		  	        y:796,
+    });
+
+
+
+	                aslayer.on('click', function(evt) {
+	                poort19vbig.remove();   // delete layer eerst
+	                poort18vbig.remove();
+	                poort17vbig.remove();
+ 					layer.add(poort19vbig);
+ 					layer.add(poort18vbig);
+ 					layer.add(poort17vbig);
+		  		          stage.draw();
+	      });
+
+	                aslayerdelete.on('click', function(evt) {
+		  			poort19vbig.remove();   // delete layer eerst
+		  			poort18vbig.remove();
+		  			poort17vbig.remove();
+		  		          stage.draw();
+	      });
+
+			core.on('mouseover', function() {
+	      	layer.add(hostname);
+	      	layer.add(chas1);
+			layer.add(chas2);
+			layer.add(chas3);
+			layer.add(chas4);
+			layer.add(chas5);
+        	layer.draw();
+      		});
+
+      		core.on('mouseout', function() {
+			hostname.remove();
+			chas1.remove();
+			chas2.remove();
+			chas3.remove();
+			chas4.remove();
+			chas5.remove();
+			layer.draw();
+      		});
+
+          core.on('click', function(evt) {
+			rect6.remove();   // delete layer eerst
+			aslayer.remove();
+			aslayerdelete.remove();
+			aslayerarc.remove();
+			aslayerdeletearc.remove();
+			redLine.remove();
+			rect6.remove();
+			closeline.remove();
+			closearc.remove();
+			corep1.remove();
+			corep2.remove();
+			corep3.remove();
+			corep4.remove();
+			corep5.remove();
+			corep6.remove();
+			corep7.remove();
+			corep8.remove();
+			corep9.remove();
+			corep10.remove();
+			corep11.remove();
+			corep12.remove();
+			corep13.remove();
+			corep14.remove();
+			corep15.remove();
+			corep16.remove();
+			layer.add(rect6);
+			layer.add(nametext4);
+			layer.add(redLine);
+			layer.add(aslayer);
+	        layer.add(aslayerdelete);
+	        layer.add(closeline);
+	        layer.add(closearc);
+	        layer.add(aslayerarc);
+	        layer.add(aslayerdeletearc);
+	        layer.add(corep1);
+	        layer.add(corep2);
+	        layer.add(corep3);
+	        layer.add(corep4);
+			layer.add(corep5);
+	        layer.add(corep6);
+	        layer.add(corep7);
+	        layer.add(corep8);
+	        layer.add(corep9);
+			layer.add(corep10);
+			layer.add(corep11);
+			layer.add(corep12);
+			layer.add(corep13);
+			layer.add(corep14);
+			layer.add(corep15);
+	        layer.add(corep16);
+		          stage.draw();
+	      });
+
+
+
+          closeline.on('click', function(evt) {
+			aslayer.remove();
+			aslayerdelete.remove();
+			redLine.remove();
+			poort19vbig.remove();
+			poort18vbig.remove();
+	    poort17vbig.remove();
+	    aslayerarc.remove();
+			aslayerdeletearc.remove();
+			closeline.remove();
+			closearc.remove();
+			corep1.remove();
+			corep2.remove();
+			corep3.remove();
+			corep4.remove();
+			corep5.remove();
+			corep6.remove();
+			corep7.remove();
+			corep8.remove();
+			corep9.remove();
+			corep10.remove();
+			corep11.remove();
+			corep12.remove();
+			corep13.remove();
+			corep14.remove();
+			corep15.remove();
+			corep16.remove();
+		          stage.draw();
+	      });
+
+
+
+	      rect6.on('click', function(evt) {
+		  			rect6.remove();
+		  			nametext4.remove();
+		  			core.setStroke('#1879fc');
+		  	        stage.draw();
+      });
+
+
+
+          // add the shape to the layer
+	      layer.add(nametext);
+	      layer.add(nametext2);
+	      layer.add(nametext3);
+	      layer.add(rect1);
+	      layer.add(rect2);
+	      layer.add(rect3);
+	      layer.add(rect4);
+	      layer.add(rect5);
+	      layer.add(arc);
+	      layer.add(core);
+
+      // add the layer to the stage
+		stage.add(layer);
+
+
+
+    </script>
+
+
+
+
+</div>        <div id="output"></div>
+</body>
+</html>
